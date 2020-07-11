@@ -1,4 +1,4 @@
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {createStackNavigator, createAppContainer} from 'react-navigation-stack';
 import Category from './Category'
 import CategoryMenu from './CategoryMenu'
 import Meals from './Meals'

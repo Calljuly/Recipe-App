@@ -21,8 +21,8 @@ const CategoryMenuScreen = (props) =>{
 
 CategoryMenuScreen.navigationOptions ={
     headerTitle : 'Menu ',
-    headerStyle ={
-
+    headerStyle :{
+        color: 'black'
     },
     headerTintTitle : 'white'
 }
