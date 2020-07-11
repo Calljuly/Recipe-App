@@ -21,12 +21,14 @@ const CategoryScreen = (props) =>{
             );
     }
     return (
-        
-        <FlatList data={CATEGORIES} numColums={2} style={styles.screen} rederItem={renderGrid}>
-            <Text>CategoryScreen :D</Text>
-            <Button title="Go to Meals" onPress={()=>{
-                props.navigation.navigate('CategoryMenu');
-            }} />
+        <FlatList data={CATEGORIES} 
+        style={styles.screen} 
+        contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}} 
+        renderItem={renderGrid}
+        keyExtractor={(item, index) => item.id}
+        numColums={2}>
+
+          
         </FlatList>
     );
 }
@@ -40,11 +42,9 @@ CategoryScreen.navigationOptions={
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1, 
-        justifyContent: 'center',
-        alignItems: 'center'
+        flex: 1
     },
-    gridIte:{
+    gridItem:{
         flex:1,
         margin: 15,
         height: 10

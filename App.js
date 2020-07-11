@@ -4,10 +4,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
 
-import CategoryScreen from './components/Category'
-import CategoryMenuScreen from './components/CategoryMenu'
-import MealsDetails from './components/Meals'
-
 import Navigator from './components/Navigator'
 
 const fetchFonts = () =>{
@@ -27,9 +23,9 @@ export default function App() {
     onError={(err) => console.log(err)} />
   }
   return (
-    <View>
-      <Navigator/>
-    </View>
+    
+      <Navigator />
+    
   );
 }
 

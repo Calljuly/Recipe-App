@@ -6,14 +6,14 @@ import CategoryScreen from './Category'
 
 const CategoryMenuScreen = (props) =>{
 
-    const categoryId = props.navigation.getParams('categoryId');
+    const categoryId = props.navigation.getParam('categoryId');
     const selectedMeals = CATEGORIES.find(item => item.id === categoryId);
 
     return (
-        <View styl={styles.screen}>
-            <Text>Category Menu Screen :D</Text>
+        <View style={styles.screen}>
+            <Text>{selectedMeals.title}</Text>
             <Button title="Go to Meals" onPress={()=>{
-                props.navigation.navigate('MelasDetails');
+                props.navigation.navigate('MealsDetails');
             }} />
         </View>
     );

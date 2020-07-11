@@ -5,7 +5,7 @@ const MealsDetails = (props) =>{
     return (
         <View style={styles.screen}>
             <Text>Melas </Text>
-            <Button title="Go back to top " on Press={() =>{
+            <Button title="Go back to top " onPress={() =>{
                 props.navigation.popToTop();
             }}/>
         </View>
