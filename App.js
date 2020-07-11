@@ -23,9 +23,7 @@ export default function App() {
     onError={(err) => console.log(err)} />
   }
   return (
-    
       <Navigator />
-    
   );
 }
 

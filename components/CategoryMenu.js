@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native'
+import {View, Text, StyleSheet, Button, Platform} from 'react-native'
 import {CATEGORIES} from './dummy-data'
 import Colors from './Colors'
 import CategoryScreen from './Category'
@@ -15,6 +15,9 @@ const CategoryMenuScreen = (props) =>{
             <Button title="Go to Meals" onPress={()=>{
                 props.navigation.navigate('MealsDetails');
             }} />
+            <Button title="Go back !" onPress={() =>{
+                props.navigation.pop();
+            }}/>
         </View>
     );
 }
@@ -22,10 +25,11 @@ const CategoryMenuScreen = (props) =>{
 CategoryMenuScreen.navigationOptions ={
     headerTitle : 'Menu ',
     headerStyle :{
-        color: 'black'
+        backgroundColor: Platform.OS === 'android' ? Colors.Primary : ''
     },
-    headerTintTitle : 'white'
+    headerTintTitle :  Platform.OS === 'android' ? 'white' : Colors.Primary
 }
+
 
 const styles = StyleSheet.create({
     screen: {

@@ -8,7 +8,9 @@ const CategoryScreen = (props) =>{
 
     const renderGrid = (itemData) => {
         return (
-            <TouchableOpacity onPress={() =>{
+            <TouchableOpacity
+            style={styles.gridItem}
+            onPress={() =>{
                 props.navigation.navigate({
                     routeName: 'CategoryMenu',
                     params:{
@@ -16,20 +18,18 @@ const CategoryScreen = (props) =>{
                     }
                 });
             }}>
-            <View style={styles.gridItem}><Text>{itemData.item.title}</Text></View>
+                <View>
+                    <Text>{itemData.item.title}</Text>
+                </View>
             </TouchableOpacity>
             );
     }
     return (
         <FlatList data={CATEGORIES} 
-        style={styles.screen} 
-        contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}} 
         renderItem={renderGrid}
         keyExtractor={(item, index) => item.id}
-        numColums={2}>
-
-          
-        </FlatList>
+        numColums={5}/> 
+        
     );
 }
 CategoryScreen.navigationOptions={
