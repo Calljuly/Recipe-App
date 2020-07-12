@@ -5,6 +5,7 @@ import Colors from './Colors'
 import CategoryScreen from './Category'
 import Category from './ClassCategory'
 import MealsItem from './MealsItem'
+import MealScreen from './Meals'
 
 const CategoryMenuScreen = (props) =>{
 
@@ -19,7 +20,14 @@ const CategoryMenuScreen = (props) =>{
         complexity={itemData.item.complexity} 
         affordability={itemData.item.affordability}
         image={itemData.item.imageUrl}
-        click={() => {return 0}} />;
+        click={() => {
+            props.navigation.navigate({
+                routeName: MealScreen,
+                params: {
+                    mealId: itemData.item.id
+                }
+            });
+        }} />;
     }
 
     return (
