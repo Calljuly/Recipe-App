@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Button, Platform} from 'react-native'
 import {CATEGORIES} from './dummy-data'
 import Colors from './Colors'
 import CategoryScreen from './Category'
+import Category from './ClassCategory'
 
 const CategoryMenuScreen = (props) =>{
 
@@ -22,14 +23,13 @@ const CategoryMenuScreen = (props) =>{
     );
 }
 
-CategoryMenuScreen.navigationOptions ={
-    headerTitle : 'Menu ',
-    headerStyle :{
-        backgroundColor: Platform.OS === 'android' ? Colors.Primary : ''
-    },
-    headerTintTitle :  Platform.OS === 'android' ? 'white' : Colors.Primary
-}
-
+CategoryMenuScreen.navigationOptions = (navigationData) => {
+    const catId = navigationData.navigation.getParam('categoryId');
+    const selectedMeals = CATEGORIES.find(item => item.id === catId);
+    return {
+        headerTitle: selectedMeals.title
+    }
+};
 
 const styles = StyleSheet.create({
     screen: {

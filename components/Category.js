@@ -29,15 +29,10 @@ const CategoryScreen = (props) =>{
         renderItem={renderGrid}
         keyExtractor={(item, index) => item.id}
         numColumns={2}/> 
-        
     );
 }
 CategoryScreen.navigationOptions={
-    headerTitle: 'Meals category',
-    headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.Primary : ''
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.Primary
+    headerTitle: 'Meals category'
 }
 
 const styles = StyleSheet.create({
