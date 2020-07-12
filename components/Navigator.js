@@ -2,7 +2,6 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import {Platform} from 'react-native';
 import Colors from './Colors';
-
 import Category from './Category';
 import CategoryMenu from './CategoryMenu';
 import Meals from './Meals';
