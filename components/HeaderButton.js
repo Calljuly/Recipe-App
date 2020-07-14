@@ -11,7 +11,4 @@ const CustomHeaderButton = (props) =>{
     iconSize={23} 
     color={Platform.OS === 'android' ? 'white' : Colors.Primary}  />
 }
-const styles = StyleSheet.create({
-
-});
 export default CustomHeaderButton;

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
 
 const MealsItem = (props) =>{
+    console.log(props);
     return (
         <View style={styles.mealItem}>
         <TouchableOpacity onPress={props.click}>

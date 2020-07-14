@@ -7,6 +7,7 @@ import CategoryGridTile from './CategoryGridTile'
 const CategoryScreen = (props) =>{
 
     const renderGrid = (itemData) => {
+        console.log(itemData.item.id);
         return <CategoryGridTile 
         title={itemData.item.title} 
         color={itemData.item.color}

@@ -5,38 +5,40 @@ import Colors from './Colors'
 import CategoryScreen from './Category'
 import Category from './ClassCategory'
 import MealsItem from './MealsItem'
-import MealScreen from './Meals'
+import MealsScreen from './Meals'
 
 const CategoryMenuScreen = (props) =>{
 
-    const categoryId = props.navigation.getParam('categoryId');
-    const display = MEALS.filter(item => item.categorysIds === categoryId);
+    const renderItemData = (itemData) => {
 
-    const renderMealItem = itemData => {
-        
-        return <MealsItem 
+        return (
+        <MealsItem 
         title={itemData.item.title}
         duration={itemData.item.duration}
         complexity={itemData.item.complexity} 
         affordability={itemData.item.affordability}
         image={itemData.item.imageUrl}
         click={() => {
+            console.log(props.navigation);
             props.navigation.navigate({
-                routeName: MealScreen,
+                routeName: 'MealsScreen',
                 params: {
                     mealId: itemData.item.id
                 }
+              
             });
-        }} />;
+        }} />
+        );
     }
+    const categoryId = props.navigation.getParam('categoryId');
+    const display = MEALS.filter(item => item.categoryId.indexOf(categoryId) >= 0 );
 
     return (
         <View style={styles.screen}>
-            <FlatList 
-            data={display} 
+            <FlatList data={display} 
+            renderItem={renderItemData}
             keyExtractor={(item, index) => item.id}
-            renderItem={renderMealItem}
-            style={{width: '100%'}}/>
+            style={{width:'100%'}}/>
         </View>
     );
 }

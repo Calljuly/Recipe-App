@@ -10,15 +10,15 @@ const MealsDetails = (props) =>{
 
     return (
         <View style={styles.screen}>
-            <Text>Melas </Text>
+            <Text>Meals </Text>
             <Button title="Go back to top " onPress={() =>{
                 props.navigation.popToTop();
             }}/>
         </View>
     );
 }
-MealsDetails.navigationOptions = () =>{
-    const mealId = props.navigation.getParam('mealId');
+MealsDetails.navigationOptions = (data) =>{
+    const mealId = data.navigation.getParam('mealId');
     const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
     return {
