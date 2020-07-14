@@ -10,7 +10,7 @@ const MealsDetails = (props) =>{
 
     return (
         <View style={styles.screen}>
-            <Text>Meals </Text>
+            <Text>{selectedMeal.title}</Text>
             <Button title="Go back to top " onPress={() =>{
                 props.navigation.popToTop();
             }}/>
@@ -23,15 +23,15 @@ MealsDetails.navigationOptions = (data) =>{
 
     return {
         headerTitle: selectedMeal.title,
-        headerRight: <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        headerRight :() =>{ return (<HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item 
             title="Favorite" 
             icon-name="ios-star" 
             onPress={() =>{
                 console.log('Mark as a favorite!');
             }} />
-        </HeaderButtons>
-    }
+        </HeaderButtons>);}}
+    
 }
 const styles = StyleSheet.create({
     screen: {

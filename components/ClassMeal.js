@@ -1,9 +1,9 @@
-import { ThemeColors } from "react-navigation";
 class Meal{
     constructor(id, categoryId, title, affordability, complexity, imageUrl, duration, ingredients, steps,
          isGlutenfree, isVegan, IsVegetarian, isLactoseFree){
         this.id = id;
         this.categoryId = categoryId;
+        this.title = title;
         this.affordability = affordability;
         this.complexity = complexity;
         this.imageUrl = imageUrl;

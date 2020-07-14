@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
 
 const MealsItem = (props) =>{
-    console.log(props);
+
     return (
         <View style={styles.mealItem}>
         <TouchableOpacity onPress={props.click}>
@@ -12,7 +12,7 @@ const MealsItem = (props) =>{
                     source={{uri:props.image}}
                     style={styles.bgImage}>
                         <View style={styles.titleContainer}>
-                        <Text numberOfLines={1} style={props.title}>{props.title}</Text>
+                        <Text numberOfLines={1} style={styles.title}>{props.title}</Text>
                         </View>
                     </ImageBackground>
                     
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     titleContainer: {
-        backgroundColor: 'rgba(0,0,0,0.7)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
         paddingVertical: 5,
         paddingHorizontal: 12
     }
