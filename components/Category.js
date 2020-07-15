@@ -1,8 +1,10 @@
-import React from 'react'
-import {View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Platform} from 'react-native'
-import {CATEGORIES} from './dummy-data'
-import Colors from './Colors'
-import CategoryGridTile from './CategoryGridTile'
+import React from 'react';
+import {View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Platform} from 'react-native';
+import {CATEGORIES} from './dummy-data';
+import Colors from './Colors';
+import CategoryGridTile from './CategoryGridTile';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import HeaderButton from './HeaderButton';
 
 const CategoryScreen = (props) =>{
 
@@ -26,8 +28,18 @@ const CategoryScreen = (props) =>{
         numColumns={2}/> 
     );
 }
-CategoryScreen.navigationOptions={
-    headerTitle: 'Meals category'
+CategoryScreen.navigationOptions=(data) =>{
+
+    return {
+    headerTitle: 'Meals category',
+    headerLeft : () =>{
+        return (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item title="Menu" iconName="ios-menu" onPress={() => {
+                data.navigation.toggleDrawer();
+            }} />
+        </HeaderButtons>);
+    }
+}
 }
 
 const styles = StyleSheet.create({

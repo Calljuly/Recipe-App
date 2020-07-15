@@ -6,40 +6,18 @@ import CategoryScreen from './Category'
 import Category from './ClassCategory'
 import MealsItem from './MealsItem'
 import MealsScreen from './Meals'
+import List from './List'
 
-const CategoryMenuScreen = (props) =>{
+const CategoryMenuScreen = (props) => {
 
-    const renderItemData = (itemData) => {
-
-        return (
-        <MealsItem 
-        title={itemData.item.title}
-        duration={itemData.item.duration}
-        complexity={itemData.item.complexity} 
-        affordability={itemData.item.affordability}
-        image={itemData.item.imageUrl}
-        click={() => {
-            console.log(props.navigation);
-            props.navigation.navigate({
-                routeName: 'MealsScreen',
-                params: {
-                    mealId: itemData.item.id
-                }
-              
-            });
-        }} />
-        );
-    }
     const categoryId = props.navigation.getParam('categoryId');
     const display = MEALS.filter(item => item.categoryId.indexOf(categoryId) >= 0 );
 
     return (
-        <View style={styles.screen}>
-            <FlatList data={display} 
-            renderItem={renderItemData}
-            keyExtractor={(item, index) => item.id}
-            style={{width:'100%'}}/>
-        </View>
+        <List 
+        styles={{width: '100%'}}
+        data={display}
+        navigation={props.navigation} />
     );
 }
 
