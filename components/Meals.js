@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, Button, ScrollView, Image} from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
-import {MEALS} from './dummy-data';
 import HeaderButton from './HeaderButton';
+import {useSelector, useDispatch} from 'react-redux';
+import {toggleFavorite} from '../store/mealsAction';
 
-const MealsDetails = (props) =>{
+const MealsDetails = (props) => {
+    
     const mealId = props.navigation.getParam('mealId');
-    const selectedMeal = MEALS.find(meal => meal.id === mealId);
+    const availableMeals = useSelector(state =>{
+        return state.meals.meals
+    });
+    const favoriteMeals = useSelector(state => 
+        {return state.meals.favoriteMeals.some(meal => meal.id === mealId)});
+    const selectedMeal = availableMeals.find(meal => meal.id === mealId);
+    const dispatch = useDispatch();
 
+    const toggleFavoriteHandler  = useCallback(() =>{
+        dispatch(toggleFavorite(mealId));
+    },[dispatch, mealId]);
+
+    useEffect(() =>{
+        props.navigation.setParams({toggleFav : toggleFavoriteHandler});
+    }, [toggleFavoriteHandler]);
+    useEffect(() =>{
+        props.navigation.setParams({isFavorite : favoriteMeals});
+    },[favoriteMeals]);
     return (
         <ScrollView>
             <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />
@@ -16,31 +34,30 @@ const MealsDetails = (props) =>{
                 <Text style={{fontFamily: 'open-sans'}}>{selectedMeal.complexity.toUpperCase()}</Text>
                 <Text style={{fontFamily: 'open-sans'}}>{selectedMeal.affordability.toUpperCase()}</Text>
             </View>
-           <Text style={styles.styles.title}>Ingredients</Text>
+           <Text style={styles.title}>Ingredients</Text>
            {selectedMeal.ingredients.map(ingredients =>{
-               return (<View style={styles.text}><Text key={ingredients}>{ingredients}</Text></View>)
+               return (<View key={ingredients} style={styles.text}><Text>{ingredients}</Text></View>)
            })}
            <Text style={styles.title}>Steps</Text>
            {selectedMeal.steps.map(steps =>{
-               return (<View style={styles.text}><Text key={steps}>{steps}</Text></View>)
+               return (<View key={steps} style={styles.text}><Text>{steps}</Text></View>)
            })}
 
         </ScrollView>
     );
 }
 MealsDetails.navigationOptions = (data) =>{
-    const mealId = data.navigation.getParam('mealId');
-    const selectedMeal = MEALS.find(meal => meal.id === mealId);
+    const selectedMeal = data.navigation.getParam('mealTitle');
+    const handler = data.navigation.getParam('toggleFav');
+    const isFav = data.navigation.getParam('isFavorite');
 
     return {
-        headerTitle: selectedMeal.title,
+        headerTitle: selectedMeal,
         headerRight :() =>{ return (<HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item 
             title="Favorite" 
-            iconName="ios-star" 
-            onPress={() =>{
-                console.log('Mark as a favorite!');
-            }} />
+            iconName={isFav ? "ios-star" : "ios-star-outline"} 
+            onPress={handler} />
         </HeaderButtons>);}}
     
 }
